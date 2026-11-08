@@ -63,8 +63,9 @@ El sistema tendrá las siguientes funcionalidades:
 
 Durante el desarrollo del proyecto se utilizarán:
 
-- **Python**
-- **Tkinter** para la interfaz gráfica.
+- **C#** como lenguaje de programación.
+- **Windows Forms** para desarrollar la interfaz gráfica.
+- **Visual Studio Community** como entorno de desarrollo.
 - **Git** para el control de versiones.
 - **GitHub** para almacenar y administrar el repositorio.
 
