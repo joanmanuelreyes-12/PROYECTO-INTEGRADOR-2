@@ -1,0 +1,15 @@
+
+# Archivos temporales de Visual Studio
+.vs/
+**/.vs/
+*.user
+*.suo
+*.rsuser
+
+# Archivos generados por .NET
+**/bin/
+**/obj/
+
+# Archivos temporales
+*.cache
+.DS_Store
