@@ -186,7 +186,8 @@ namespace ProyectoIntegrador2
 
         private void btnEstadisticas_Click(object sender, EventArgs e)
         {
-            int total = 20, ocupados = ContarOcupados();
+            int total = asientos.GetLength(0) * asientos.GetLength(1);
+            int ocupados = ContarOcupados();
             int disponibles = total - ocupados;
             double porcentaje = (double)ocupados / total * 100;
 
