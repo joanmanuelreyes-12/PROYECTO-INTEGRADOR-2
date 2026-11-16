@@ -9,7 +9,7 @@ namespace ProyectoIntegrador2
     {
         private readonly int[,] asientos = new int[4, 5];
         private readonly Button[,] botonesAsientos = new Button[4, 5];
-
+        private string modo = "";
         private Panel pnlAsientos;
         private Button btnReservar, btnLiberar, btnDisponibilidad, btnEstadisticas, btnConsultarAsiento;
         private Label lblOcupados, lblDisponibles, lblPorcentaje;
@@ -112,16 +112,48 @@ namespace ProyectoIntegrador2
 
         private void CambiarEstadoAsiento(int fila, int columna)
         {
-            if (asientos[fila, columna] == 0)
+            string nombre = botonesAsientos[fila, columna].Text;
+
+            if (modo == "reservar")
             {
+                if (asientos[fila, columna] == 1)
+                {
+                    MessageBox.Show(
+                        $"El asiento {nombre} ya está ocupado.",
+                        "Reservación no permitida",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
                 asientos[fila, columna] = 1;
                 botonesAsientos[fila, columna].BackColor = Color.Red;
             }
-            else
+            else if (modo == "liberar")
             {
+                if (asientos[fila, columna] == 0)
+                {
+                    MessageBox.Show(
+                        $"El asiento {nombre} ya está disponible.",
+                        "Liberación no permitida",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
                 asientos[fila, columna] = 0;
                 botonesAsientos[fila, columna].BackColor = Color.Green;
             }
+            else
+            {
+                MessageBox.Show(
+                    "Primero presiona Reservar o Liberar.",
+                    "Seleccionar operación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
             ActualizarInformacion();
         }
 
@@ -157,14 +189,20 @@ namespace ProyectoIntegrador2
 
         private void btnReservar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Haz clic sobre un asiento disponible para reservarlo.",
-                "Reservar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            modo = "reservar";
+
+            MessageBox.Show(
+                "Selecciona un asiento disponible para reservarlo.",
+                "Reservar");
         }
 
         private void btnLiberar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Haz clic sobre un asiento ocupado para liberarlo.",
-                "Liberar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            modo = "liberar";
+
+            MessageBox.Show(
+                "Selecciona un asiento ocupado para liberarlo.",
+                "Liberar");
         }
 
         private void btnDisponibilidad_Click(object sender, EventArgs e)
